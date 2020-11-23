@@ -1,9 +1,9 @@
 // Called by "application.js"
-function GameManager(size, InputManager, Actuator, StorageManager) {
+function GameManager(size) {
   this.size           = size; // Size of the grid
-  this.inputManager   = new InputManager;
-  this.storageManager = new StorageManager;
-  this.actuator       = new Actuator;
+  this.inputManager   = new KeyboardInputManager;
+  this.storageManager = new LocalStorageManager;
+  this.actuator       = new HTMLActuator;
 
   this.startTiles     = 2;
 
