@@ -122,25 +122,6 @@ GameManager.prototype.serialize = function () {
   };
 };
 
-// .prepareTiles()
-// Save all tile positions and remove merger info
-GameManager.prototype.prepareTiles = function () {
-  this.grid.eachCell(function (x, y, tile) {
-    if (tile) {
-      tile.mergedFrom = null;
-      tile.savePosition();
-    }
-  });
-};
-
-// .moveTile(tile, cell)
-// Move a tile and its representation
-GameManager.prototype.moveTile = function (tile, cell) {
-  this.grid.cells[tile.x][tile.y] = null;
-  this.grid.cells[cell.x][cell.y] = tile;
-  tile.updatePosition(cell);
-};
-
 // .move(direction)
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
@@ -204,6 +185,25 @@ GameManager.prototype.move = function (direction) {
 
     this.actuate();
   }
+};
+
+// .prepareTiles()
+// Save all tile positions and remove merger info
+GameManager.prototype.prepareTiles = function () {
+  this.grid.eachCell(function (x, y, tile) {
+    if (tile) {
+      tile.mergedFrom = null;
+      tile.savePosition();
+    }
+  });
+};
+
+// .moveTile(tile, cell)
+// Move a tile and its representation
+GameManager.prototype.moveTile = function (tile, cell) {
+  this.grid.cells[tile.x][tile.y] = null;
+  this.grid.cells[cell.x][cell.y] = tile;
+  tile.updatePosition(cell);
 };
 
 // .getVector(direction)
