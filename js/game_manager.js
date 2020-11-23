@@ -1,3 +1,7 @@
+// class GameManager
+
+// GameManager(size)
+// constructor
 // Called by "application.js"
 function GameManager(size) {
   this.size           = size; // Size of the grid
@@ -14,6 +18,7 @@ function GameManager(size) {
   this.setup();
 }
 
+// .restart()
 // Restart the game
 GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
@@ -21,17 +26,20 @@ GameManager.prototype.restart = function () {
   this.setup();
 };
 
+// .keepPlaying()
 // Keep playing after winning (allows going over 2048)
 GameManager.prototype.keepPlaying = function () {
   this.keepPlaying = true;
   this.actuator.continueGame(); // Clear the game won/lost message
 };
 
+// .isGameTerminated()
 // Return true if the game is lost, or has won and the user hasn't kept playing
 GameManager.prototype.isGameTerminated = function () {
   return this.over || (this.won && !this.keepPlaying);
 };
 
+// .setup()
 // Set up the game
 GameManager.prototype.setup = function () {
   var previousState = this.storageManager.getGameState();
@@ -59,6 +67,7 @@ GameManager.prototype.setup = function () {
   this.actuate();
 };
 
+// .addStartTiles()
 // Set up the initial tiles to start the game with
 GameManager.prototype.addStartTiles = function () {
   for (var i = 0; i < this.startTiles; i++) {
@@ -66,6 +75,7 @@ GameManager.prototype.addStartTiles = function () {
   }
 };
 
+// .addRandomTile()
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
@@ -76,6 +86,7 @@ GameManager.prototype.addRandomTile = function () {
   }
 };
 
+// .actuate()
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
   if (this.storageManager.getBestScore() < this.score) {
@@ -99,6 +110,7 @@ GameManager.prototype.actuate = function () {
 
 };
 
+// .serialize()
 // Represent the current game as an object
 GameManager.prototype.serialize = function () {
   return {
@@ -110,6 +122,7 @@ GameManager.prototype.serialize = function () {
   };
 };
 
+// .prepareTiles()
 // Save all tile positions and remove merger info
 GameManager.prototype.prepareTiles = function () {
   this.grid.eachCell(function (x, y, tile) {
@@ -120,6 +133,7 @@ GameManager.prototype.prepareTiles = function () {
   });
 };
 
+// .moveTile(tile, cell)
 // Move a tile and its representation
 GameManager.prototype.moveTile = function (tile, cell) {
   this.grid.cells[tile.x][tile.y] = null;
@@ -127,6 +141,7 @@ GameManager.prototype.moveTile = function (tile, cell) {
   tile.updatePosition(cell);
 };
 
+// .move(direction)
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
@@ -191,6 +206,7 @@ GameManager.prototype.move = function (direction) {
   }
 };
 
+// .getVector(direction)
 // Get the vector representing the chosen direction
 GameManager.prototype.getVector = function (direction) {
   // Vectors representing tile movement
@@ -204,6 +220,7 @@ GameManager.prototype.getVector = function (direction) {
   return map[direction];
 };
 
+// .buildTraversals(vector)
 // Build a list of positions to traverse in the right order
 GameManager.prototype.buildTraversals = function (vector) {
   var traversals = { x: [], y: [] };
@@ -220,6 +237,7 @@ GameManager.prototype.buildTraversals = function (vector) {
   return traversals;
 };
 
+// .findFarthestPosition(cell, vector)
 GameManager.prototype.findFarthestPosition = function (cell, vector) {
   var previous;
 
@@ -236,10 +254,12 @@ GameManager.prototype.findFarthestPosition = function (cell, vector) {
   };
 };
 
+// .movesAvailable()
 GameManager.prototype.movesAvailable = function () {
   return this.grid.cellsAvailable() || this.tileMatchesAvailable();
 };
 
+// .tileMatchesAvailable()
 // Check for available matches between tiles (more expensive check)
 GameManager.prototype.tileMatchesAvailable = function () {
   var self = this;
@@ -268,6 +288,7 @@ GameManager.prototype.tileMatchesAvailable = function () {
   return false;
 };
 
+// .positionsEqual(first, second)
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
 };
