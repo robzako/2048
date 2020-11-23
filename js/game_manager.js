@@ -4,12 +4,12 @@
 // constructor
 // Called by "application.js"
 function GameManager(size, startTiles) {
-  this.size           = size; // Size of the grid
+  this.size           = size;       // Size of grid
+  this.startTiles     = startTiles; // Number of tiles at start of new game
+
   this.inputManager   = new KeyboardInputManager;
   this.storageManager = new LocalStorageManager;
   this.actuator       = new HTMLActuator;
-
-  this.startTiles     = startTiles;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
