@@ -1,3 +1,18 @@
+// class KeyboardInputManager
+//   .eventTouchstart
+//   .eventTouchmove
+//   .eventTouchend
+//   .events
+//
+//   .on(event, callback)
+//   .emit(event, data)
+//   .listen()
+//   .restart()
+//   .keepPlaying()
+//   .bindButtonPress(selector, fn)
+
+// KeyboardInputManager()
+// constructor
 function KeyboardInputManager() {
   this.events = {};
 
@@ -15,6 +30,7 @@ function KeyboardInputManager() {
   this.listen();
 }
 
+// .on(event, callback)
 KeyboardInputManager.prototype.on = function (event, callback) {
   if (!this.events[event]) {
     this.events[event] = [];
@@ -22,6 +38,7 @@ KeyboardInputManager.prototype.on = function (event, callback) {
   this.events[event].push(callback);
 };
 
+// .emit(event, data)
 KeyboardInputManager.prototype.emit = function (event, data) {
   var callbacks = this.events[event];
   if (callbacks) {
@@ -31,6 +48,7 @@ KeyboardInputManager.prototype.emit = function (event, data) {
   }
 };
 
+// .listen()
 KeyboardInputManager.prototype.listen = function () {
   var self = this;
 
@@ -127,16 +145,19 @@ KeyboardInputManager.prototype.listen = function () {
   });
 };
 
+// .restart()
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
   this.emit("restart");
 };
 
+// .keepPlaying()
 KeyboardInputManager.prototype.keepPlaying = function (event) {
   event.preventDefault();
   this.emit("keepPlaying");
 };
 
+// .bindButtonPress(selector, fn)
 KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
   var button = document.querySelector(selector);
   button.addEventListener("click", fn.bind(this));
