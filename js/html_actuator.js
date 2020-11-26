@@ -1,3 +1,24 @@
+// class HTMLActuator
+// .tileContainer
+// .scoreContainer
+// .bestContainer
+// .messageContainer
+// .score
+//
+// .actuate(grid, metadata)
+// .continueGame()
+// .clearContainer(container)
+// .addTile(tile)
+// .applyClasses(element, classes)
+// .normalizePosition(position)
+// .positionClass(position)
+// .updateScore(score)
+// .updateBestScore(bestScore)
+// .message(won)
+// .clearMessage()
+
+// HTMLActuator()
+// constructor
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
@@ -7,6 +28,7 @@ function HTMLActuator() {
   this.score = 0;
 }
 
+// .actuate(grid, metadata)
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
 
@@ -35,17 +57,20 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
   });
 };
 
+// .continueGame()
 // Continues the game (both restart and keep playing)
 HTMLActuator.prototype.continueGame = function () {
   this.clearMessage();
 };
 
+// .clearContainer(container)
 HTMLActuator.prototype.clearContainer = function (container) {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
 };
 
+// .addTile(tile)
 HTMLActuator.prototype.addTile = function (tile) {
   var self = this;
 
@@ -90,19 +115,23 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.tileContainer.appendChild(wrapper);
 };
 
+// .applyClasses(element, classes)
 HTMLActuator.prototype.applyClasses = function (element, classes) {
   element.setAttribute("class", classes.join(" "));
 };
 
+// .normalizePosition(position)
 HTMLActuator.prototype.normalizePosition = function (position) {
   return { x: position.x + 1, y: position.y + 1 };
 };
 
+// .positionClass(position)
 HTMLActuator.prototype.positionClass = function (position) {
   position = this.normalizePosition(position);
   return "tile-position-" + position.x + "-" + position.y;
 };
 
+// .updateScore(score)
 HTMLActuator.prototype.updateScore = function (score) {
   this.clearContainer(this.scoreContainer);
 
@@ -120,10 +149,12 @@ HTMLActuator.prototype.updateScore = function (score) {
   }
 };
 
+// .updateBestScore(bestScore)
 HTMLActuator.prototype.updateBestScore = function (bestScore) {
   this.bestContainer.textContent = bestScore;
 };
 
+// .message(won)
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!";
@@ -132,6 +163,7 @@ HTMLActuator.prototype.message = function (won) {
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
 };
 
+// .clearMessage()
 HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
   this.messageContainer.classList.remove("game-won");
