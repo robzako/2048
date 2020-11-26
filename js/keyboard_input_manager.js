@@ -1,15 +1,15 @@
 // class KeyboardInputManager
-//   .eventTouchstart
-//   .eventTouchmove
-//   .eventTouchend
-//   .events
+// .eventTouchstart
+// .eventTouchmove
+// .eventTouchend
+// .events
 //
-//   .on(event, callback)
-//   .emit(event, data)
-//   .listen()
-//   .restart()
-//   .keepPlaying()
-//   .bindButtonPress(selector, fn)
+// .on(event, callback)
+// .emit(event, data)
+// .listen()
+// .restart()
+// .keepPlaying()
+// .bindButtonPress(selector, fn)
 
 // KeyboardInputManager()
 // constructor

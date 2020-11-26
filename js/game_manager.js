@@ -1,29 +1,29 @@
 // class GameManager
-//   .size
-//   .startTiles
-//   .score
-//   .over
-//   .won
-//   .keepPlaying
-//   .grid
+// .size
+// .startTiles
+// .score
+// .over
+// .won
+// .keepPlaying
+// .grid
 //
-//   .restart()
-//   .keepPlaying()
-//   .isGameTerminated()
-//   .setup()
-//   .addStartTiles()
-//   .addRandomTile()
-//   .actuate()
-//   .serialize()
-//   .move(direction)
-//   .prepareTiles()
-//   .moveTile(tile, cell)
-//   .getVector(direction)
-//   .buildTraversals(vector)
-//   .findFarthestPosition(cell, vector)
-//   .movesAvailable()
-//   .tileMatchesAvailable()
-//   .positionsEqual(first, second)
+// .restart()
+// .keepPlaying()
+// .isGameTerminated()
+// .setup()
+// .addStartTiles()
+// .addRandomTile()
+// .actuate()
+// .serialize()
+// .move(direction)
+// .prepareTiles()
+// .moveTile(tile, cell)
+// .getVector(direction)
+// .buildTraversals(vector)
+// .findFarthestPosition(cell, vector)
+// .movesAvailable()
+// .tileMatchesAvailable()
+// .positionsEqual(first, second)
 
 // GameManager(size)
 // constructor
